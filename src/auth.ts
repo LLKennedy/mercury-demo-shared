@@ -8,12 +8,12 @@
 
 import * as tsjson from "@llkennedy/protoc-gen-tsjson";
 import { google } from "@llkennedy/protoc-gen-tsjson";
-import { UserID as service__UserID } from "user";
+import { UserID as shared__UserID } from "user";
 
 /** A message */
 export class Token extends Object implements tsjson.ProtoJSONCompatible {
 	/** A field */
-	public id?: service__UserID;
+	public id?: shared__UserID;
 	/** A field */
 	public created?: google.protobuf.Timestamp;
 	/** A field */
@@ -28,7 +28,7 @@ export class Token extends Object implements tsjson.ProtoJSONCompatible {
 	public static async Parse(data: any): Promise<Token> {
 		let objData: Object = tsjson.AnyToObject(data);
 		let res = new Token();
-		res.id = await tsjson.Parse.Message(objData, "id", "id", service__UserID.Parse);
+		res.id = await tsjson.Parse.Message(objData, "id", "id", shared__UserID.Parse);
 		res.created = await tsjson.Parse.Message(objData, "created", "created", google.protobuf.Timestamp.Parse);
 		res.expires = await tsjson.Parse.Message(objData, "expires", "expires", google.protobuf.Timestamp.Parse);
 		return res;

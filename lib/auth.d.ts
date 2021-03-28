@@ -7,11 +7,11 @@
  */
 import * as tsjson from "@llkennedy/protoc-gen-tsjson";
 import { google } from "@llkennedy/protoc-gen-tsjson";
-import { UserID as service__UserID } from "user";
+import { UserID as shared__UserID } from "user";
 /** A message */
 export declare class Token extends Object implements tsjson.ProtoJSONCompatible {
     /** A field */
-    id?: service__UserID;
+    id?: shared__UserID;
     /** A field */
     created?: google.protobuf.Timestamp;
     /** A field */
