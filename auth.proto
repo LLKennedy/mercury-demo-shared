@@ -1,0 +1,17 @@
+syntax = "proto3";
+package service;
+
+option go_package = "github.com/LLKennedy/mercury/internal/testservice/service";
+
+import "node_modules/@llkennedy/protoc-gen-tsjson/tsjson.proto";
+option (tsjson.npm_package) = "@llkdemo/mercury-demo-shared";
+option (tsjson.import_path) = "auth";
+
+import "user.proto";
+import "google/protobuf/timestamp.proto";
+
+message Token {
+	UserID id = 1;
+	google.protobuf.Timestamp created = 2;
+	google.protobuf.Timestamp expires = 3;
+}
