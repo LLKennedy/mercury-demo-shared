@@ -4,13 +4,15 @@ go get google.golang.org/grpc@v1.34.0
 go install github.com/LLKennedy/mercury/cmd/protoc-gen-mercury@v0.9.0
 go install github.com/LLKennedy/protoc-gen-tsjson@v0.5.0
 
-$Directory = "."
+$Directory = "./*"
 $IncludeRule = "*.proto"
 $ExcludeRUle = [Regex]'.*google.*|.*audit/.*|.*node_modules.*'
-$PBPath = "./demosharedpb"
+$GoPBPath = "./demosharedpb"
+$TSPBPath = "./src"
 $ProtoFiles = Get-ChildItem -path $Directory -Include $IncludeRule | Where-Object FullName -NotMatch $ExcludeRUle
 foreach ($file in $ProtoFiles) {
-	protoc --proto_path="$($file.DirectoryName)" --go_out=paths=source_relative:$PBPath --go-grpc_out=paths=source_relative:$PBPath --tsjson_out=$PBPath --mercury_out=$PBPath $file.FullName
+	protoc --proto_path="$($file.DirectoryName)" --go_out=paths=source_relative:$GoPBPath --go-grpc_out=paths=source_relative:$GoPBPath --tsjson_out=$TSPBPath --mercury_out=$TSPBPath $file.FullName
 }
+
 go build $PBPath
 go mod tidy
